@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block tytul %}Dodaj Nową Grę{% endblock %}
+
+{% block tresc %}
+<h1>Dodaj nową pozycję</h1>
+<form method="post" action="{{ url_for('dodaj') }}">
+    <div>
+        <label>Nazwa: <input type="text" name="nazwa" required></label>
+    </div>
+    <br>
+    <div>
+        <label>Gatunek: <input type="text" name="gatunek" required></label>
+    </div>
+    <br>
+    <div>
+        <label>Cena: <input type="number" step="0.01" name="cena" required></label>
+    </div>
+    <br>
+    <div>
+        <label><input type="checkbox" name="dostepny" value="1" checked> Dostępna w sklepie</label>
+    </div>
+    <br>
+    <button type="submit">Zapisz</button>
+</form>
+{% endblock %}

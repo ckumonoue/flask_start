@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block tytul %}Szczegóły: {{ element.nazwa }}{% endblock %}
+
+{% block tresc %}
+<h1>{{ element.nazwa }}</h1>
+<p><strong>ID:</strong> {{ element.id }}</p>
+<p><strong>Gatunek:</strong> {{ element.gatunek }}</p>
+<p><strong>Cena:</strong> {{ "%.2f"|format(element.cena) }} zł</p>
+<p><strong>Status:</strong> {% if element.dostepny %}Dostępna{% else %}Niedostępna{% endif %}</p>
+
+<a href="{{ url_for('lista') }}">← Powrót do listy</a>
+{% endblock %}

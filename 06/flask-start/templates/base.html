@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block tytul %}Sklep z Grami{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Start</a> |
+        <a href="{{ url_for('lista') }}">Lista</a> |
+        <a href="{{ url_for('dodaj') }}">Dodaj</a>
+        
+        <form method="get" action="{{ url_for('szukaj') }}" style="display: inline-block; margin-left: 20px;">
+            <input type="text" name="q" placeholder="Szukaj..." value="{{ q if q is defined else '' }}">
+            <button type="submit">Szukaj</button>
+        </form>
+    </nav>
+    <hr>
+    <main>
+        {% block tresc %}{% endblock %}
+    </main>
+    <hr>
+    <footer>
+        <p>&copy; Mykyta Bratus 4-A</p>
+    </footer>
+</body>
+</html>

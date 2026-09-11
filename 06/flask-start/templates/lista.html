@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block tytul %}Lista Gier{% endblock %}
+
+{% block tresc %}
+<h1>Lista Gier (Liczba elementów: {{ elementy|length }})</h1>
+
+{% if elementy %}
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nazwa</th>
+            <th>Gatunek</th>
+            <th>Cena</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for e in elementy %}
+        <tr class="{% if not e.dostepny %}niedostepny{% endif %}">
+            <td>{{ loop.index }}</td>
+            <td>
+                <a href="{{ url_for('szczegoly', id=e.id) }}">{{ e.nazwa }}</a>
+            </td>
+            <td>{{ e.gatunek }}</td>
+            <td>{{ "%.2f"|format(e.cena) }} zł</td>
+            <td>
+                {% if e.dostepny %}
+                    Dostępny
+                {% else %}
+                    <strong>Brak na stanie</strong>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p><strong>Brak elementów do wyświetlenia.</strong></p>
+{% endif %}
+{% endblock %}
