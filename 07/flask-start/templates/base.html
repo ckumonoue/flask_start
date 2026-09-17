@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Księgarnia</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('lista') }}">Lista książek</a> | 
+        <a href="{{ url_for('dodaj') }}">Dodaj książkę</a>
+    </nav>
+    <hr>
+    {% block tresc %}{% endblock %}
+</body>
+</html>

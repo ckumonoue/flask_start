@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block tresc %}
+<h1>Lista książek</h1>
+
+<form method="get" action="{{ url_for('lista') }}">
+    <input type="text" name="q" placeholder="Szukaj po tytule..." value="{{ request.args.get('q', '') }}">
+    <label>
+        <input type="checkbox" name="tylko_dostepne" value="1" {% if request.args.get('tylko_dostepne') == '1' %}checked{% endif %}>
+        Tylko dostępne
+    </label>
+    <button type="submit">Filtruj</button>
+</form>
+
+<br>
+
+{% if ksiazki %}
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Lp.</th>
+        <th>Tytuł</th>
+        <th>Kategoria</th>
+        <th>Cena netto</th>
+        <th>Status</th>
+        <th>Akcje</th>
+    </tr>
+    {% for k in ksiazki %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td><a href="{{ url_for('szczegoly', id=k.id) }}">{{ k.tytul }}</a></td>
+        <td>{{ k.kategoria.nazwa if k.kategoria else "Brak" }}</td>
+        <td>{{ k.cena }} zł</td>
+        <td>{{ "Dostępna" if k.dostepna else "Niedostępna" }}</td>
+        <td>
+            <a href="{{ url_for('edytuj', id=k.id) }}">Edytuj</a>
+            <form method="post" action="{{ url_for('usun', id=k.id) }}" style="display:inline;">
+                <button type="submit" onclick="return confirm('Usunąć?')">Usuń</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Brak wyników. <a href="{{ url_for('dodaj') }}">Dodaj książkę</a>.</p>
+{% endif %}
+{% endblock %}
