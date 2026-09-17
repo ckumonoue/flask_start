@@ -37,4 +37,4 @@
 >>> db.session.delete(k_do_usuniecia)
 >>> db.session.commit()
 
-# Zrobiłem README za pomocą AI
+# Zrobiłem README za pomocą AI.
