@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block tresc %}
+<h1>Edycja: {{ k.tytul }}</h1>
+<form method="post">
+    <p><label>Tytuł: <input type="text" name="tytul" value="{{ k.tytul }}" required></label></p>
+    <p><label>Cena: <input type="number" step="0.01" name="cena" value="{{ k.cena }}" required></label></p>
+    <p><label>Rok wydania: <input type="number" name="rok_wydania" value="{{ k.rok_wydania or '' }}"></label></p>
+    <p>
+        <label>Kategoria:
+            <select name="kategoria_id">
+                <option value="">-- Brak --</option>
+                {% for kat in kategorie %}
+                    <option value="{{ kat.id }}" {% if k.kategoria_id == kat.id %}selected{% endif %}>{{ kat.nazwa }}</option>
+                {% endfor %}
+            </select>
+        </label>
+    </p>
+    <p><label><input type="checkbox" name="dostepna" {% if k.dostepna %}checked{% endif %}> Dostępna</label></p>
+    <button type="submit">Zapisz zmiany</button>
+</form>
+{% endblock %}

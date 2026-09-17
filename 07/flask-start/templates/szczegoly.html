@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block tresc %}
+<h1>{{ k.tytul }}</h1>
+<p><b>Kategoria:</b> {{ k.kategoria.nazwa if k.kategoria else "Brak" }}</p>
+<p><b>Cena brutto:</b> {{ k.cena_brutto() }} zł (netto: {{ k.cena }} zł)</p>
+<p><b>Dostępność:</b> {{ "Tak" if k.dostepna else "Nie" }}</p>
+<p><b>Rok wydania:</b> {{ k.rok_wydania if k.rok_wydania else "Brak danych" }}</p>
+
+{% if k.wiek_ksiazki() is not none %}
+    <p><b>Wiek książki:</b> {{ k.wiek_ksiazki() }} lat(a)</p>
+{% endif %}
+
+<a href="{{ url_for('edytuj', id=k.id) }}">Edytuj</a> | 
+<a href="{{ url_for('lista') }}">Powrót</a>
+{% endblock %}
