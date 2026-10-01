@@ -54,4 +54,4 @@ screenshots/  – zrzuty ekranu aplikacji
 
 ## Autor
 
-Imię Nazwisko, 4TP, 2026/2027
+Mykyta Bratus, 4A, 2026/2027
